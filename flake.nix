@@ -15,12 +15,12 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfree = true;                              # Allow proprietary software
+      config.allowUnfree = true;
     };
   in 
   {
     nixosConfigurations = {
-      dev = pkgs.lib.nixosSystem {
+      dev = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ ./configuration.nix ];
       };
