@@ -29,7 +29,7 @@
     userEmail = "dev@stdx.space";
     signing = {
       key = "577E858EDCFECA83";
-      signByDefault = true;
+      # signByDefault = true;
     };
     delta.enable = true;
   };
@@ -40,4 +40,26 @@
     enable = true;
     pinentryFlavor = "curses";
   };
+
+  programs.zsh = {
+    enable = true;
+    dotDir = ".config/zsh";
+    history.path = "${config.xdg.stateHome}/zsh/history";
+    enableSyntaxHighlighting = true;
+    enableAutosuggestions = true;
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k.conf.d;
+        file = ".p10k.zsh";
+      }
+    ];
+  };
+
+  xdg.enable = true;
 }

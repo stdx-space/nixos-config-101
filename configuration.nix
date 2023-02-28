@@ -1,7 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -32,7 +33,7 @@
   users.users.stommydx = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ ];
+    packages = with pkgs; [ nixpkgs-fmt ];
     shell = pkgs.zsh;
   };
 
@@ -51,7 +52,9 @@
   programs.git.enable = true;
   programs.iotop.enable = true;
   programs.neovim = {
+    enable = true;
     viAlias = true;
+    vimAlias = true;
     defaultEditor = true;
   };
   programs.thefuck.enable = true;
@@ -82,10 +85,10 @@
   # Enable nix-ld
   # For running unpatched binaries such as VS Code remote SSH plugin server
   programs.nix-ld.enable = true;
-#  environment.variables = {
-#    NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc ];
-#    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-#  };
+  #  environment.variables = {
+  #    NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc ];
+  #    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+  #  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
