@@ -4,37 +4,36 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
+    fsType = "btrfs";
+    options = [ "subvol=root" ];
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
+    fsType = "btrfs";
+    options = [ "subvol=home" ];
+  };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
-      fsType = "btrfs";
-      options = [ "subvol=nix" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/b8552979-20af-4aa6-bd51-b5edecaef078";
+    fsType = "btrfs";
+    options = [ "subvol=nix" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1175-F522";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1175-F522";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
@@ -46,5 +45,6 @@
   # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

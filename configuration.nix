@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # nixos-generate-config doesn't detect mount options automatically
   fileSystems = {
@@ -27,16 +26,13 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    keyMap = "colemak";
-  };
+  console = { keyMap = "colemak"; };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stommydx = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 

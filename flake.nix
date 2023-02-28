@@ -11,19 +11,26 @@
   };
 
   outputs = { self, nixpkgs, home-manager }:
-  let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in 
-  {
-    nixosConfigurations = {
-      dev = nixpkgs.lib.nixosSystem {
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
         inherit system;
-        modules = [ ./configuration.nix ];
+        config.allowUnfree = true;
+      };
+    in {
+      nixosConfigurations = {
+        dev = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.stommydx = import ./home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }
