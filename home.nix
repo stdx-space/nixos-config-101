@@ -34,8 +34,9 @@
     delta.enable = true;
   };
 
-  programs.gpg.enable = true;
+  programs.go.enable = true;
 
+  programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "curses";

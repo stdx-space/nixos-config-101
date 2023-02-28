@@ -43,6 +43,7 @@
     ctop
     delta
     jq
+    neofetch
     sshfs
     tldr
     tree
