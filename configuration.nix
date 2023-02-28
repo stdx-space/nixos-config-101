@@ -72,22 +72,9 @@
 
   # List services that you want to enable:
 
-  services.consul = {
-    enable = true;
-    webUi = true;
-  };
-  services.nomad = {
-    enable = true;
-    enableDocker = true;
-    extraPackages = with pkgs; [ cni-plugins ];
-  };
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
   services.tailscale.enable = true;
-  services.vault = {
-    enable = true;
-    storageBackend = "raft";
-  };
 
   networking.firewall.enable = false;
 
@@ -97,11 +84,6 @@
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

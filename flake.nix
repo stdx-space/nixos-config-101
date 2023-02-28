@@ -10,10 +10,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
+  outputs = { self, nixpkgs, home-manager }:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;                              # Allow proprietary software
+    };
+  in 
+  {
     nixosConfigurations = {
-      dev = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      dev = pkgs.lib.nixosSystem {
+        inherit system;
         modules = [ ./configuration.nix ];
       };
     };
