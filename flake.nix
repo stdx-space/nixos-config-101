@@ -8,9 +8,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, sops-nix }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -30,6 +35,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.stommydx = import ./home.nix;
             }
+            sops-nix.nixosModules.sops
           ];
         };
       };

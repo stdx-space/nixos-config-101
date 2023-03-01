@@ -38,12 +38,14 @@
   };
 
   environment.systemPackages = with pkgs; [
+    age
     bat
     btop
     ctop
     delta
     jq
     neofetch
+    sops
     sshfs
     tldr
     tree
@@ -90,6 +92,17 @@
   #    NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc ];
   #    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   #  };
+
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    age = {
+      keyFile = "/etc/sops-nix/key.txt";
+      generateKey = true;
+    };
+    secrets = {
+      password = {};
+    };
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
