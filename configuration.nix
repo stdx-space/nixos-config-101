@@ -37,29 +37,48 @@
     shell = pkgs.zsh;
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
+    ansible
     age
     bat
     btop
+    cargo
+    cmake
     ctop
     delta
+    dig
+    duf
+    gcc
+    gnumake
+    gh
     jq
     neofetch
+    p7zip
+    python3
+    rustc
     sops
     sshfs
+    terraform
     tldr
     tree
+    unzip
     wander
+    zip
   ];
 
+  programs._1password.enable = true;
   programs.git.enable = true;
   programs.iotop.enable = true;
+  programs.java.enable = true;
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     defaultEditor = true;
   };
+  programs.npm.enable = true;
   programs.thefuck.enable = true;
   programs.tmux = {
     enable = true;
@@ -74,6 +93,7 @@
 
   # List services that you want to enable:
 
+  services.resolved.enable = true;
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
   services.tailscale.enable = true;
@@ -88,10 +108,6 @@
   # Enable nix-ld
   # For running unpatched binaries such as VS Code remote SSH plugin server
   programs.nix-ld.enable = true;
-  #  environment.variables = {
-  #    NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc ];
-  #    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
-  #  };
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
