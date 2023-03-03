@@ -21,10 +21,11 @@
     in
     {
       nixosConfigurations = {
-        dev = nixpkgs.lib.nixosSystem {
+        nixos101 = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./configuration.nix
+            ./machines/nixos101/hardware-configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

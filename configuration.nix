@@ -1,11 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   # nixos-generate-config doesn't detect mount options automatically
   fileSystems = {
     "/".options = [ "compress=zstd" ];
