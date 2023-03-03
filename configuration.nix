@@ -40,23 +40,41 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    ansible
     age
+    ansible
+    ansible-lint
     bat
+    black
     btop
     cargo
+    cfssl
     cmake
+    consul
+    consul-template
     ctop
+    dasel
     delta
     dig
     duf
+    exa
+    ffmpeg
     gcc
     gnumake
+    gping
     gh
+    httpie
+    iperf
     jq
+    lazygit
+    lolcat
     neofetch
+    netcat
+    nomad
     p7zip
+    packer
+    protobuf
     python3
+    rclone
     rustc
     sops
     sshfs
@@ -64,7 +82,9 @@
     tldr
     tree
     unzip
+    vault
     wander
+    wget
     zip
   ];
 
