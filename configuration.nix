@@ -69,7 +69,10 @@
     p7zip
     packer
     protobuf
-    python3
+    (python3.withPackages (pythonPkgs: with pythonPkgs; [
+      ipython
+      pandas
+    ]))
     rclone
     rustc
     sops
