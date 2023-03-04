@@ -14,7 +14,6 @@
 
   zramSwap.enable = true;
 
-  networking.hostName = "nixos101";
   networking.networkmanager.enable = true;
 
   # Set your time zone.

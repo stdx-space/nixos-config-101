@@ -25,7 +25,7 @@
           inherit system;
           modules = [
             ./configuration.nix
-            ./machines/nixos101/hardware-configuration.nix
+            ./hosts/nixos101/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -40,7 +40,7 @@
           modules = [
             ./configuration.nix
             ./configuration.desktop.nix
-            ./machines/nixos102/hardware-configuration.nix
+            ./hosts/nixos102/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
