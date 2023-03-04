@@ -1,2 +1,7 @@
 creation_rules:
-  - pgp: C9230708DD20DB6A887C9B80577E858EDCFECA83
+  - key_groups:
+      - pgp: 
+          - C9230708DD20DB6A887C9B80577E858EDCFECA83
+        age:
+          - age1y3xfg0mcaadnxj0el7ectxz90dey4ymtqreup3kdpx55hy2esv6qq2xvd3 # nixos101
+          - age1sg9jul0kwpxkyv36zlzdhg4vh0n7rmzksjpfqrcmssl8jm7dtdns9jpt0g # nixos102
