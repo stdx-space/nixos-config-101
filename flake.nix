@@ -39,6 +39,7 @@
           inherit system;
           modules = [
             ./configuration.nix
+            ./configuration.desktop.nix
             ./machines/nixos102/hardware-configuration.nix
             home-manager.nixosModules.home-manager
             {
