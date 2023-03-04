@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 
-{  
+{
   hardware.bluetooth.enable = true;
   hardware.logitech.wireless = {
     enable = true;

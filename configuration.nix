@@ -12,9 +12,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  zramSwap.enable = true;
-
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";
@@ -88,6 +85,16 @@
     zip
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  networking.firewall.enable = false;
+  networking.networkmanager = {
+    enable = true;
+    connectionConfig = {
+      "connection.mdns" = 2;
+    };
+  };
+
   programs._1password.enable = true;
   programs.git.enable = true;
   programs.iotop.enable = true;
@@ -111,23 +118,14 @@
     autosuggestions.enable = true;
   };
 
-  # List services that you want to enable:
+  # Enable nix-ld
+  # For running unpatched binaries such as VS Code remote SSH plugin server
+  programs.nix-ld.enable = true;
 
   services.resolved.enable = true;
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
   services.tailscale.enable = true;
-
-  networking.firewall.enable = false;
-
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-  };
-
-  # Enable nix-ld
-  # For running unpatched binaries such as VS Code remote SSH plugin server
-  programs.nix-ld.enable = true;
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -142,7 +140,12 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
+
+  zramSwap.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
