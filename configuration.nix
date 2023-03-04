@@ -44,6 +44,7 @@
     btop
     cargo
     cfssl
+    cloudflared
     cmake
     consul
     consul-template
@@ -84,6 +85,7 @@
     vault
     wander
     wget
+    youtube-dl
     zip
   ];
 
