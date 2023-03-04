@@ -66,6 +66,7 @@
     nomad
     p7zip
     packer
+    pandoc
     protobuf
     (python3.withPackages (pythonPkgs: with pythonPkgs; [
       ipython

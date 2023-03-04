@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+
   hardware.bluetooth.enable = true;
   hardware.logitech.wireless = {
     enable = true;
@@ -9,22 +11,26 @@
   hardware.pulseaudio.enable = false; # prevent pipewire conficting pulseaudio
   hardware.steam-hardware.enable = true;
 
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-console
+  ];
   environment.systemPackages = with pkgs; [
     bottles
     discord
     goverlay
     heroic
+    mangohud
+    moonlight-qt
+    mpv
     nerdfonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    mangohud
-    moonlight-qt
+    obs-studio
     papirus-icon-theme
     pinta
     prismlauncher
     postman
-    qgnomeplatform
     remmina
     signal-desktop
     slack
@@ -36,6 +42,7 @@
     ubuntu_font_family
     via
     vial
+    vlc
     vscode
     whatsapp-for-linux
     # yubikey-manager-qt
@@ -49,13 +56,18 @@
     remotePlay.openFirewall = true;
   };
   programs.gamemode.enable = true;
+  programs.gnome-terminal.enable = true;
+
+  qt.platformTheme = "gnome";
 
   services.flatpak.enable = true;
+  services.gnome.gnome-browser-connector.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
   services.printing.enable = true;
   services.saned.enable = true;

@@ -63,5 +63,43 @@ with lib.hm.gvariant;
     ]
   );
 
+  programs.firefox.enable = true;
+  programs.gnome-terminal = {
+    enable = true;
+    profile.default = {
+      default = true;
+      visibleName = "Default";
+      transparencyPercent = 20;
+    };
+  };
+  programs.mangohud = {
+    enable = true;
+    settings = {
+      gpu_stats = true;
+      gpu_temp = true;
+      gpu_load_change = true;
+      cpu_stats = true;
+      cpu_temp = true;
+      cpu_load_change = true;
+      core_load_change = true;
+      vram = true;
+      ram = true;
+      fps = true;
+      gamemode = true;
+      no_display = true;
+      position = "top-left";
+      toggle_hud = "Shift_R+F12";
+    };
+  };
+  programs.mpv.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      input-overlay
+      obs-pipewire-audio-capture
+      obs-vkcapture
+    ];
+  };
+
   services.gnome-keyring.enable = true;
 }

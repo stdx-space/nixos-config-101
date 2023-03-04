@@ -20,11 +20,16 @@
   programs.home-manager.enable = true;
 
   programs.bat.enable = true;
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
   programs.exa = {
     enable = true;
     enableAliases = true;
   };
+  programs.fzf.enable = true;
+  programs.gh.enable = true;
   programs.git = {
     enable = true;
     userName = "Tommy Li";
@@ -39,6 +44,57 @@
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.dataHome}/gnupg";
+  };
+  programs.lazygit.enable = true;
+  programs.less.enable = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    coc.enable = true;
+    plugins = with pkgs.vimPlugins; [
+      coc-clangd
+      coc-docker
+      coc-git
+      coc-go
+      coc-json
+      coc-nvim
+      coc-python
+      coc-sh
+      coc-spell-checker
+      coc-yaml
+      lualine-nvim
+      nvim-tree-lua
+      tabline-nvim
+      vim-nix
+    ];
+    extraLuaConfig = ''
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+    vim.opt.termguicolors = true
+    require("nvim-tree").setup()
+    require('lualine').setup()
+    require('tabline').setup()
+    '';
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    plugins = with pkgs.tmuxPlugins; [
+      power-theme
+      sensible
+      yank
+    ];
+  };
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "ssh.syoi.org" = {
+        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+      };
+    };
   };
   programs.zsh = {
     enable = true;
