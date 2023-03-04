@@ -19,6 +19,9 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "close,minimize:appmenu";
     };
+    "org/gnome/mutter" = {
+      check-alive-timeout = mkUint32 30000;
+    };
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [ "gsconnect@andyholmes.github.io" "user-theme@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "arcmenu@arcmenu.com" "blur-my-shell@aunetx" "appindicatorsupport@rgcjonas.gmail.com" ];
@@ -29,7 +32,26 @@ with lib.hm.gvariant;
       menu-button-appearance = "Icon_Text";
       menu-button-icon = "Distro_Icon";
     };
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = false;
+      click-action = "minimize-or-previews";
+      custom-theme-shrink = true;
+      dash-max-icon-size = 40;
+      dock-position = "BOTTOM";
+      intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+      running-indicator-dominant-color = true;
+      running-indicator-style = "CILIORA";
+      show-favorites = true;
+      show-mounts = false;
+      show-trash = false;
+    };
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+      locations = "[<(uint32 2, <('Hong Kong', 'VHHH', true, [(0.38979019379430269, 1.9928751117510946)], [(0.38949931722116538, 1.9928751117510946)])>)>]";
+    };
   };
+
+  home.file.".face".source = ./assets/propic.jpg;
 
   home.packages = with pkgs; (
     with gnomeExtensions; [

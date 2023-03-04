@@ -20,9 +20,11 @@
   programs.home-manager.enable = true;
 
   programs.bat.enable = true;
-
   programs.direnv.enable = true;
-
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
   programs.git = {
     enable = true;
     userName = "Tommy Li";
@@ -33,18 +35,11 @@
     };
     delta.enable = true;
   };
-
   programs.go.enable = true;
-
   programs.gpg = {
     enable = true;
     homedir = "${config.xdg.dataHome}/gnupg";
   };
-  services.gpg-agent = {
-    enable = true;
-    pinentryFlavor = "curses";
-  };
-
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -64,6 +59,11 @@
         file = ".p10k.zsh";
       }
     ];
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "curses";
   };
 
   xdg.enable = true;

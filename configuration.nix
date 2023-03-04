@@ -11,7 +11,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.plymouth.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";
@@ -23,7 +23,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stommydx = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "storage" "docker" ];
     packages = with pkgs; [ nixpkgs-fmt ];
     shell = pkgs.zsh;
     passwordFile = config.sops.secrets.password.path;
@@ -50,6 +50,7 @@
     dig
     duf
     exa
+    file
     ffmpeg
     gcc
     gnumake
@@ -96,9 +97,11 @@
   };
 
   programs._1password.enable = true;
+  programs.command-not-found.enable = false; # use nix-index instead
   programs.git.enable = true;
   programs.iotop.enable = true;
   programs.java.enable = true;
+  programs.nix-index.enable = true;
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -122,7 +125,10 @@
   # For running unpatched binaries such as VS Code remote SSH plugin server
   programs.nix-ld.enable = true;
 
-  services.resolved.enable = true;
+  services.resolved = {
+    enable = true;
+    extraConfig = "MulticastDNS=yes";
+  };
   services.openssh.enable = true;
   services.qemuGuest.enable = true;
   services.tailscale.enable = true;
