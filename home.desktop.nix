@@ -66,7 +66,7 @@ with lib.hm.gvariant;
   programs.firefox.enable = true;
   programs.gnome-terminal = {
     enable = true;
-    profile.default = {
+    profile."842ec37e-9d77-4e26-86c5-41fc3bca62c5" = {
       default = true;
       visibleName = "Default";
       transparencyPercent = 20;
