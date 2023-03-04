@@ -30,6 +30,7 @@
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ nixpkgs-fmt ];
     shell = pkgs.zsh;
+    passwordFile = config.sops.secrets.password.path;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -131,7 +132,9 @@
       generateKey = true;
     };
     secrets = {
-      password = {};
+      password = {
+        neededForUsers = true;
+      };
     };
   };
 
