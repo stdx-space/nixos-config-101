@@ -36,7 +36,10 @@
 
   programs.go.enable = true;
 
-  programs.gpg.enable = true;
+  programs.gpg = {
+    enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg";
+  };
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "curses";
