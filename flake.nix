@@ -45,7 +45,12 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.stommydx = import ./home.nix;
+              home-manager.users.stommydx = {
+                imports = [
+                  ./home.nix
+                  ./home.desktop.nix
+                ];
+              };
             }
             sops-nix.nixosModules.sops
           ];

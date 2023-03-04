@@ -61,6 +61,7 @@
   services.saned.enable = true;
   services.xserver = {
     enable = true;
+    xkbVariant = "colemak";
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
