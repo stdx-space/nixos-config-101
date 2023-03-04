@@ -51,6 +51,7 @@
     history.path = "${config.xdg.stateHome}/zsh/history";
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
+    historySubstringSearch.enable = true;
     plugins = [
       {
         name = "powerlevel10k";
