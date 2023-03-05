@@ -63,38 +63,34 @@ in
     {
       services.caddy.enable = true;
       systemd.services =
-        let
-          getSystemdConfig = instanceCfg:
-            {
-              description = "VSCode server";
-              wantedBy = [ "multi-user.target" ];
-              after = [ "network-online.target" ];
-              serviceConfig = {
-                ExecStart = "${cfg.package}/bin/code-server --bind-addr ${host}:${toString port} " + lib.escapeShellArgs cfg.extraArguments;
-                Restart = "on-failure";
-                User = instanceCfg.user;
-              };
+        lib.mapAttrs'
+          (name: instanceCfg: lib.nameValuePair "code-server@${name}" {
+            description = "VSCode server";
+            wantedBy = [ "multi-user.target" ];
+            after = [ "network-online.target" ];
+            serviceConfig = {
+              ExecStart = "${cfg.package}/bin/code-server --bind-addr ${host}:${toString port} " + lib.escapeShellArgs cfg.extraArguments;
+              Restart = "on-failure";
+              User = instanceCfg.user;
             };
-        in
-        lib.listToAttrs (lib.mapAttrsToList (k: v: lib.nameValuePair "code-server@${k}" (getSystemdConfig v)) cfg.instances);
+          })
+          cfg.instances;
       services.caddy.virtualHosts =
-        let
-          getCaddyRootConfig = instanceCfg:
-            {
-              extraConfig = ''
-                redir http://code.stdx.space/${instanceCfg.user}/
-              '';
-            };
-          getCaddyProxyConfig = instanceCfg:
-            {
-              extraConfig = ''
-                uri strip_prefix /${instanceCfg.user}
-                reverse_proxy ${host}:${toString port}
-              '';
-            };
-        in
-        lib.listToAttrs (lib.mapAttrsToList (k: v: lib.nameValuePair "code.stdx.space:80/${v.user}" (getCaddyRootConfig v)) cfg.instances) //
-        lib.listToAttrs (lib.mapAttrsToList (k: v: lib.nameValuePair "code.stdx.space:80/${v.user}/*" (getCaddyProxyConfig v)) cfg.instances)
+        lib.mapAttrs'
+          (name: instanceCfg: lib.nameValuePair "code.stdx.space:80/${instanceCfg.user}" {
+            extraConfig = ''
+              redir http://code.stdx.space/${instanceCfg.user}/
+            '';
+          })
+          cfg.instances //
+        lib.mapAttrs'
+          (name: instanceCfg: lib.nameValuePair "code.stdx.space:80/${instanceCfg.user}/*" {
+            extraConfig = ''
+              uri strip_prefix /${instanceCfg.user}
+              reverse_proxy ${host}:${toString port}
+            '';
+          })
+          cfg.instances
       ;
     };
 }
