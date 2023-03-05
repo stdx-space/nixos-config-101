@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "us+colemak" ]) ];
+      sources = [ (mkTuple [ "xkb" "us+colemak" ]) (mkTuple [ "xkb" "us" ]) ];
     };
     "org/gnome/desktop/interface" = {
       clock-show-seconds = true;
@@ -16,11 +16,17 @@ with lib.hm.gvariant;
       gtk-theme = "Adwaita-dark";
       icon-theme = "Papirus-Dark";
     };
+    "org/gnome/desktop/session" = {
+      idle-delay = mkUint32 0;
+    };
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "close,minimize:appmenu";
     };
     "org/gnome/mutter" = {
       check-alive-timeout = mkUint32 30000;
+    };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
     };
     "org/gnome/shell" = {
       disable-user-extensions = false;
@@ -100,6 +106,24 @@ with lib.hm.gvariant;
       obs-vkcapture
     ];
   };
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      golang.go
+      hashicorp.terraform
+      jnoortheen.nix-ide
+      redhat.vscode-yaml
+      ms-vscode-remote.remote-ssh
+      vscodevim.vim
+    ];
+    # settings not managed by nix, sync with GitHub account
+    userSettings = {};
+  };
+
+  qt.platformTheme = "gnome";
 
   services.gnome-keyring.enable = true;
+
+  # pamu2fcfg -o pam://auth.stdx.space -i pam://auth.stdx.space > secrets/u2f_keys
+  xdg.configFile."Yubico/u2f_keys".source = ./secrets/u2f_keys;
 }

@@ -23,11 +23,12 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stommydx = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "storage" "docker" ];
+    extraGroups = [ "wheel" "storage" "docker" "networkmanager" ];
     packages = with pkgs; [ nixpkgs-fmt ];
     shell = pkgs.zsh;
     passwordFile = config.sops.secrets.password.path;
   };
+  users.groups.storage = {};
 
   nixpkgs.config.allowUnfree = true;
 

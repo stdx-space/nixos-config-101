@@ -79,6 +79,14 @@
     vimAlias = true;
     vimdiffAlias = true;
   };
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "ssh.syoi.org" = {
+        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+      };
+    };
+  };
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -87,14 +95,6 @@
       sensible
       yank
     ];
-  };
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "ssh.syoi.org" = {
-        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
-      };
-    };
   };
   programs.zsh = {
     enable = true;
