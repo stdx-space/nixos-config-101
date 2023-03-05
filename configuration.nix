@@ -28,7 +28,7 @@
     shell = pkgs.zsh;
     passwordFile = config.sops.secrets.password.path;
   };
-  users.groups.storage = {};
+  users.groups.storage = { };
 
   nixpkgs.config.allowUnfree = true;
 

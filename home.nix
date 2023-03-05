@@ -68,12 +68,12 @@
       vim-nix
     ];
     extraLuaConfig = ''
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-    vim.opt.termguicolors = true
-    require("nvim-tree").setup()
-    require('lualine').setup()
-    require('tabline').setup()
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.opt.termguicolors = true
+      require("nvim-tree").setup()
+      require('lualine').setup()
+      require('tabline').setup()
     '';
     viAlias = true;
     vimAlias = true;

@@ -117,7 +117,7 @@ with lib.hm.gvariant;
       vscodevim.vim
     ];
     # settings not managed by nix, sync with GitHub account
-    userSettings = {};
+    userSettings = { };
   };
 
   qt.platformTheme = "gnome";
