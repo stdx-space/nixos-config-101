@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+
+  imports = [ ./configuration.nix ];
+
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
 
   hardware.bluetooth.enable = true;

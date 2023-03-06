@@ -3,6 +3,9 @@
 with lib.hm.gvariant;
 
 {
+
+  imports = [ ./home.nix ];
+
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us+colemak" ]) (mkTuple [ "xkb" "us" ]) ];

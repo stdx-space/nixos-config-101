@@ -30,7 +30,11 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.stommydx = import ./home.nix;
+              home-manager.users.stommydx = {
+                imports = [
+                  ./home.nix
+                ];
+              };
             }
             sops-nix.nixosModules.sops
           ];
@@ -38,7 +42,6 @@
         nixos102 = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
             ./configuration.desktop.nix
             ./hosts/nixos102/configuration.nix
             home-manager.nixosModules.home-manager
@@ -47,7 +50,6 @@
               home-manager.useUserPackages = true;
               home-manager.users.stommydx = {
                 imports = [
-                  ./home.nix
                   ./home.desktop.nix
                 ];
               };
