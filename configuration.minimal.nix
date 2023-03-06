@@ -32,14 +32,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.firewall.enable = false;
-  networking.networkmanager = {
-    enable = true;
-    connectionConfig = {
-      "connection.mdns" = 2;
-    };
-  };
-
   programs.command-not-found.enable = false; # use nix-index instead
   programs.git.enable = true;
   programs.iotop.enable = true;

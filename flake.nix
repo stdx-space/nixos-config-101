@@ -13,9 +13,14 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-generators }:
     let
       system = "x86_64-linux";
     in
@@ -56,6 +61,15 @@
             }
             sops-nix.nixosModules.sops
           ];
+        };
+      };
+      packages.x86_64-linux = {
+        iso = nixos-generators.nixosGenerate {
+          inherit system;
+          modules = [
+            ./configuration.minimal.nix
+          ];
+          format = "install-iso";
         };
       };
     };

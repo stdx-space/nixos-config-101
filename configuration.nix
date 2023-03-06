@@ -63,6 +63,14 @@
     youtube-dl
   ];
 
+  networking.firewall.enable = false;
+  networking.networkmanager = {
+    enable = true;
+    connectionConfig = {
+      "connection.mdns" = 2;
+    };
+  };
+
   programs._1password.enable = true;
   programs.java.enable = true;
   programs.npm.enable = true;
