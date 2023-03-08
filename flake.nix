@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, nixos-generators }:
+  outputs = { self, darwin, home-manager, sops-nix, nixos-generators, nixpkgs }:
     let
       system = "x86_64-linux";
     in
@@ -61,6 +66,12 @@
             }
             sops-nix.nixosModules.sops
           ];
+        };
+      };
+      darwinConfigurations = {
+        macos101 = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [ ./darwin-configuration.nix ];
         };
       };
       packages.x86_64-linux = {
