@@ -71,7 +71,16 @@
       darwinConfigurations = {
         macos101 = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          modules = [ ./darwin-configuration.nix ];
+          modules = [
+            ./darwin-configuration.nix
+            ./hosts/macos101/darwin-configuration.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.stommydx = import ./home.nix;
+            }
+          ];
         };
       };
       packages.x86_64-linux = {
