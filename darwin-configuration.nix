@@ -91,6 +91,7 @@
       "moonlight"
       "obs"
       "signal"
+      "tailscale"
       "telegram"
       "via"
       "vial"
@@ -103,6 +104,8 @@
       "homebrew/cask-fonts"
     ];
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
