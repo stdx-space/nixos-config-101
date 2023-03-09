@@ -83,6 +83,14 @@
           ];
         };
       };
+      homeConfigurations = {
+        syoi = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            ./home.nix
+          ];
+        };
+      };
       packages.x86_64-linux = {
         iso = nixos-generators.nixosGenerate {
           inherit system;
