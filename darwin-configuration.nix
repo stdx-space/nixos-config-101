@@ -16,8 +16,10 @@
     btop
     dig
     file
+    git
     gnumake
     jq
+    neovim
     netcat
     p7zip
     rclone
@@ -70,6 +72,7 @@
     # desktop package set
     _1password-gui
     discord
+    iterm2
     mpv
     nerdfonts
     noto-fonts
@@ -106,6 +109,20 @@
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  programs.nix-index.enable = true;
+  programs.tmux = {
+    enable = true;
+    iTerm2 = true;
+  };
+  programs.vim.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableFzfCompletion = true;
+    enableFzfHistory = true;
+  };
+
+  security.pam.enableSudoTouchIdAuth = true;
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
