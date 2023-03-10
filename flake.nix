@@ -88,6 +88,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             ./home.nix
+            ./hosts/syoi/home.nix
           ];
         };
       };
