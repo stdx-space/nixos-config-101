@@ -51,7 +51,7 @@
     enable = true;
     colorschemes.tokyonight = {
       enable = true;
-      style = "night"; 
+      style = "night";
     };
     options = {
       number = true;

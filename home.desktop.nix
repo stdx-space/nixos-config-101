@@ -34,6 +34,14 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [ "gsconnect@andyholmes.github.io" "user-theme@gnome-shell-extensions.gcampax.github.com" "dash-to-dock@micxgx.gmail.com" "arcmenu@arcmenu.com" "blur-my-shell@aunetx" "appindicatorsupport@rgcjonas.gmail.com" ];
+      favorite-apps = [
+        "firefox.desktop"
+        "org.gnome.Terminal.desktop"
+        "org.gnome.Nautilus.desktop"
+        "signal-desktop.desktop"
+        "discord.desktop"
+        "spotify.desktop"
+      ];
     };
     "org/gnome/shell/extensions/arcmenu" = {
       distro-icon = 0;
