@@ -30,7 +30,17 @@
     zip
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+  };
 
   programs.command-not-found.enable = false; # use nix-index instead
   programs.git.enable = true;
