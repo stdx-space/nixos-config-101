@@ -23,9 +23,14 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = github:pta2002/nixvim;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, darwin, home-manager, sops-nix, nixos-generators, nixpkgs }:
+  outputs = { self, darwin, home-manager, sops-nix, nixos-generators, nixpkgs, nixvim }:
     let
       system = "x86_64-linux";
     in
@@ -43,6 +48,7 @@
               home-manager.users.stommydx = {
                 imports = [
                   ./home.nix
+                  nixvim.homeManagerModules.nixvim
                 ];
               };
             }
@@ -61,6 +67,7 @@
               home-manager.users.stommydx = {
                 imports = [
                   ./home.desktop.nix
+                  nixvim.homeManagerModules.nixvim
                 ];
               };
             }
@@ -78,7 +85,12 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.stommydx = import ./home.nix;
+              home-manager.users.stommydx = {
+                modules = [
+                  ./home.nix
+                  nixvim.homeManagerModules.nixvim
+                ];
+              };
             }
           ];
         };
@@ -89,6 +101,7 @@
           modules = [
             ./home.nix
             ./hosts/syoi/home.nix
+            nixvim.homeManagerModules.nixvim
           ];
         };
       };

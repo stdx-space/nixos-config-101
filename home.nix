@@ -47,37 +47,29 @@
   };
   programs.lazygit.enable = true;
   programs.less.enable = true;
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
-    defaultEditor = true;
-    coc.enable = true;
-    plugins = with pkgs.vimPlugins; [
-      coc-clangd
-      coc-docker
-      coc-git
-      coc-go
-      coc-json
-      coc-nvim
-      coc-python
-      coc-sh
-      coc-spell-checker
-      coc-yaml
-      lualine-nvim
-      nvim-tree-lua
-      tabline-nvim
-      vim-nix
-    ];
-    extraLuaConfig = ''
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      vim.opt.termguicolors = true
-      require("nvim-tree").setup()
-      require('lualine').setup()
-      require('tabline').setup()
-    '';
+    options = {
+      number = true;
+    };
+    plugins = {
+      bufferline.enable = true;
+      coq-nvim.enable = true;
+      gitsigns.enable = true;
+      lualine.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+          clangd.enable = true;
+          rnix-lsp.enable = true;
+        };
+      };
+      nix.enable = true;
+      nvim-tree.enable = true;
+      todo-comments.enable = true;
+    };
     viAlias = true;
     vimAlias = true;
-    vimdiffAlias = true;
   };
   programs.ssh = {
     enable = true;
