@@ -49,24 +49,37 @@
   programs.less.enable = true;
   programs.nixvim = {
     enable = true;
+    colorschemes.tokyonight = {
+      enable = true;
+      style = "night"; 
+    };
     options = {
       number = true;
     };
     plugins = {
-      bufferline.enable = true;
+      bufferline = {
+        enable = true;
+        separatorStyle = "slant";
+      };
+      comment-nvim.enable = true;
       coq-nvim.enable = true;
       gitsigns.enable = true;
       lualine.enable = true;
       lsp = {
         enable = true;
         servers = {
+          bashls.enable = true;
           clangd.enable = true;
+          gopls.enable = true;
           rnix-lsp.enable = true;
+          rust-analyzer.enable = true;
         };
       };
       nix.enable = true;
+      nvim-autopairs.enable = true;
       nvim-tree.enable = true;
       todo-comments.enable = true;
+      treesitter.enable = true;
     };
     viAlias = true;
     vimAlias = true;
