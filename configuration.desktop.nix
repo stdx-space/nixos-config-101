@@ -50,6 +50,7 @@
     vlc
     vscode
     whatsapp-for-linux
+    wl-clipboard
     yubikey-manager
     # yubikey-manager-qt
     yuzu-mainline

@@ -120,21 +120,44 @@ with lib.hm.gvariant;
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
+      asvetliakov.vscode-neovim
       golang.go
       hashicorp.terraform
       jnoortheen.nix-ide
       redhat.vscode-yaml
+      ms-vscode.cmake-tools
+      ms-vscode.makefile-tools
       ms-vscode-remote.remote-ssh
-      vscodevim.vim
     ];
-    # settings not managed by nix, sync with GitHub account
-    userSettings = { };
+    userSettings = {
+      "editor.rulers" = [120];
+      "explicitFolding.rules" = {
+        "*" = {
+          begin = "{{{";
+          end = "}}}";
+          autoFold = true;
+        };
+      };
+      "remote.autoForwardPorts" = false;
+      "terminal.integrated.fontFamily" = "DroidSansMono Nerd Font Mono, monospace";
+      "vscode-neovim.neovimInitVimPaths.linux" = "${config.home.homeDirectory}/${config.xdg.configFile."vscode-neovim/init.lua".target}";
+      "vscode-neovim.mouseSelectionStartVisualMode" = true;
+    };
+  };
+  programs.zsh.shellAliases = {
+    pbcopy = "wl-copy";
+    pbpaste = "wl-paste";
   };
 
   qt.platformTheme = "gnome";
 
   services.gnome-keyring.enable = true;
 
+  xdg.configFile."vscode-neovim/init.lua".text = ''
+    require("Comment").setup{}
+    vim.keymap.set("v", "<C-c>", "\"+y", {noremap=true})
+    vim.keymap.set("v", "<C-x>", "\"+d", {noremap=true})
+  '';
   # pamu2fcfg -o pam://auth.stdx.space -i pam://auth.stdx.space > secrets/u2f_keys
   xdg.configFile."Yubico/u2f_keys".source = ./secrets/u2f_keys;
 }

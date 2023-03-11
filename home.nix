@@ -53,6 +53,10 @@
       enable = true;
       style = "night";
     };
+    maps = {
+      visual."<C-c>".action = ''"+y'';
+      visual."<C-x>".action = ''"+d'';
+    };
     options = {
       number = true;
     };
