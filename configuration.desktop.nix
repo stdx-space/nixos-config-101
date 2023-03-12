@@ -25,10 +25,6 @@
     mangohud
     moonlight-qt
     mpv
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
     obs-studio
     pam_u2f
     papirus-icon-theme
@@ -43,7 +39,6 @@
     tdesktop
     # teams
     transmission
-    ubuntu_font_family
     usbutils
     via
     vial
@@ -54,6 +49,22 @@
     yubikey-manager
     # yubikey-manager-qt
     yuzu-mainline
+  ];
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "DroidSansMono"
+        "JetBrainsMono"
+        "Meslo"
+        "SourceCodePro"
+        "Ubuntu"
+      ];
+    })
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    ubuntu_font_family
   ];
 
   programs._1password-gui.enable = true;

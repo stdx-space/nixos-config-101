@@ -130,7 +130,7 @@ with lib.hm.gvariant;
       ms-vscode-remote.remote-ssh
     ];
     userSettings = {
-      "editor.rulers" = [120];
+      "editor.rulers" = [ 120 ];
       "explicitFolding.rules" = {
         "*" = {
           begin = "{{{";
