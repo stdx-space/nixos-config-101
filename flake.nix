@@ -78,7 +78,7 @@
       darwinConfigurations = {
         macos101 = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          modules = [
+          imports = [
             ./darwin-configuration.nix
             ./hosts/macos101/darwin-configuration.nix
             home-manager.darwinModules.home-manager
