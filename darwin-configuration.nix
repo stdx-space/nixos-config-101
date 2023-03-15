@@ -70,14 +70,9 @@
     youtube-dl
   ] ++ [
     # desktop package set
-    _1password-gui
-    discord
     iterm2
     mpv
     pam_u2f
-    postman
-    slack
-    utm
     vscode
   ];
 
@@ -101,12 +96,23 @@
     enable = true;
     onActivation.autoUpdate = true;
     casks = [
+      "1password"
+      "discord"
+      "firefox"
+      "hiddenbar"
+      "keka"
       "logi-options-plus"
       "moonlight"
       "obs"
+      "postman"
+      "rectagle"
       "signal"
+      "slack"
+      "stats"
+      "steam"
       "tailscale"
       "telegram"
+      "utm"
       "via"
       "vial"
       "vlc"
