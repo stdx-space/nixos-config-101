@@ -105,7 +105,7 @@
       "moonlight"
       "obs"
       "postman"
-      "rectagle"
+      "rectangle"
       "signal"
       "slack"
       "stats"
