@@ -124,10 +124,13 @@ with lib.hm.gvariant;
       golang.go
       hashicorp.terraform
       jnoortheen.nix-ide
-      redhat.vscode-yaml
+      ms-azuretools.vscode-docker
       ms-vscode.cmake-tools
+      ms-vscode.cpptools
       ms-vscode.makefile-tools
       ms-vscode-remote.remote-ssh
+      redhat.vscode-yaml
+      tomoki1207.pdf
     ];
     userSettings = {
       "editor.rulers" = [ 120 ];
@@ -138,10 +141,12 @@ with lib.hm.gvariant;
           autoFold = true;
         };
       };
+      "git.confirmSync" = false;
       "remote.autoForwardPorts" = false;
-      "terminal.integrated.fontFamily" = "DroidSansMono Nerd Font Mono, monospace";
+      "terminal.integrated.fontFamily" = "MesloLGM Nerd Font Mono, DroidSansMono Nerd Font Mono, monospace";
       "vscode-neovim.neovimInitVimPaths.linux" = "${config.home.homeDirectory}/${config.xdg.configFile."vscode-neovim/init.lua".target}";
       "vscode-neovim.mouseSelectionStartVisualMode" = true;
+      "workbench.colorTheme" = "Tokyo Night";
     };
   };
   programs.zsh.shellAliases = {
