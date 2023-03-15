@@ -20,6 +20,7 @@
   environment.systemPackages = with pkgs; [
     bottles
     discord
+    firefox
     goverlay
     heroic
     mangohud
@@ -49,6 +50,7 @@
     yubikey-manager
     # yubikey-manager-qt
     yuzu-mainline
+    zoom
   ];
 
   fonts.fonts = with pkgs; [
