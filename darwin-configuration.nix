@@ -74,16 +74,27 @@
     discord
     iterm2
     mpv
-    nerdfonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
     pam_u2f
     postman
     slack
-    ubuntu_font_family
     utm
     vscode
+  ];
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override {
+      fonts = [
+        "DroidSansMono"
+        "JetBrainsMono"
+        "Meslo"
+        "SourceCodePro"
+        "Ubuntu"
+      ];
+    })
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    ubuntu_font_family
   ];
 
   homebrew = {
@@ -126,7 +137,19 @@
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
+  nix.package = pkgs.nix;
+
+  system.defaults = {
+    CustomUserPreferences = { };
+    NSGlobalDomain.InitialKeyRepeat = 25;
+    NSGlobalDomain.KeyRepeat = 2;
+    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+    dock.autohide = true;
+    dock.tilesize = 48;
+    screencapture.location = "~/Desktop/Screenshot";
+    trackpad.Clicking = true;
+    trackpad.TrackpadThreeFingerDrag = true;
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
