@@ -104,6 +104,13 @@
             nixvim.homeManagerModules.nixvim
           ];
         };
+        "tommy-ArchPCdx" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+			      ./home.desktop.nix
+            nixvim.homeManagerModules.nixvim
+          ];
+        };
       };
       packages.x86_64-linux = {
         iso = nixos-generators.nixosGenerate {
